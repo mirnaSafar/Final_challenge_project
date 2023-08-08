@@ -2,7 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_templete/core/enums/connectivity_status.dart';
 import 'package:flutter_templete/core/translation/app_translation.dart';
-import 'package:flutter_templete/ui/views/splash_screen/spalsh_screen_view.dart';
+import 'package:flutter_templete/ui/views/main_view/main_view.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: SplashSceenView()));
+            home: MainView()));
   }
 }
 

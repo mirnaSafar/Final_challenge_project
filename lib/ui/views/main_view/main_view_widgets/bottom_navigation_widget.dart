@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:food_ordering_application/core/enums/bottom_navigation.dart';
-import 'package:food_ordering_application/ui/shared/custom_widgets/custom_text.dart';
-import 'package:food_ordering_application/ui/shared/utils.dart';
-import 'package:food_ordering_application/ui/views/main_view/main_view_widgets/bottom_nav_clipper.dart';
+import 'package:flutter_templete/main.dart';
+import 'package:flutter_templete/ui/views/main_view/main_view_controller.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/enums/bottom_Navigation.dart';
 import '../../../shared/colors.dart';
+import '../../../shared/custom_widgets/custom_text.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   final BottomNavigationEnum bottomNavigationEnum;
@@ -23,45 +23,20 @@ class BottomNavigationWidget extends StatefulWidget {
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   @override
   Widget build(BuildContext context) {
+    MainViewController controller = Get.put(MainViewController());
     final size = MediaQuery.of(context).size;
     double cpWidth = 500;
     return Stack(
         // fit: StackFit.loose,
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.center,
         children: [
-          CustomPaint(
-            painter: BottomNavShadowPainter(
-                shadow: Shadow(blurRadius: 12, color: AppColors.mainTextColor),
-                clipper: BottomNavClipper()),
-            child: ClipPath(
-              clipper: BottomNavClipper(),
-              child: Container(
-                width: size.width,
-                height: size.height * 0.09,
-                color: AppColors.mainWhiteColor,
-              ),
-            ),
+          Container(
+            width: size.width,
+            height: size.height * 0.09,
+            color: AppColors.mainWhiteColor,
           ),
-          // Padding(
-          //     padding: EdgeInsets.only(bottom: 0.04 * size.height),
-          //     child: InkWell(
-          //       onTap: () {
-          //         widget.onTap(BottomNavigationEnum.HOME, 1);
-          //       },
-          //       child: CircleAvatar(
-          //         backgroundColor:
-          //             widget.bottomNavigationEnum == BottomNavigationEnum.HOME
-          //                 ? AppColors.mainBlueColor
-          //                 : AppColors.mainTextColor,
-          //         radius: size.width * 0.085,
-          //         child: SvgPicture.asset('assets/images/home-svgrepo-com.svg',
-          //             color: AppColors.mainWhiteColor
-          //             // : AppColors.mainWhiteColor,
-          //             ),
-          //       ),
-          //     )),
           Positioned(
-            bottom: size.height * 0.00,
+            // bottom: size.height * 0.00,
             left: 20,
             right: 20,
             child: Padding(
@@ -71,16 +46,25 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                 // crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   navItem(
-                      imageName: 'products-svgrepo-com',
+                      imageName: 'ic_profile',
                       text: ' ',
                       isSelected: widget.bottomNavigationEnum ==
-                          BottomNavigationEnum.PRODUCTS,
+                          BottomNavigationEnum.PROFILE,
                       onTap: () {
-                        widget.onTap(BottomNavigationEnum.PRODUCTS, 0);
+                        widget.onTap(BottomNavigationEnum.PROFILE, 3);
                       },
                       size: size),
                   navItem(
-                      imageName: 'home-svgrepo-com',
+                      imageName: 'ic_star',
+                      text: ' ',
+                      isSelected: widget.bottomNavigationEnum ==
+                          BottomNavigationEnum.FAVORITES,
+                      onTap: () {
+                        widget.onTap(BottomNavigationEnum.FAVORITES, 2);
+                      },
+                      size: size),
+                  navItem(
+                      imageName: 'ic_home',
                       text: ' ',
                       isSelected: widget.bottomNavigationEnum ==
                           BottomNavigationEnum.HOME,
@@ -92,31 +76,34 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                     clipBehavior: Clip.none,
                     children: [
                       navItem(
-                          imageName: 'cart-svgrepo-com',
+                          imageName: 'ic_notification',
                           text: ' ',
                           isSelected: widget.bottomNavigationEnum ==
-                              BottomNavigationEnum.CART,
+                              BottomNavigationEnum.NOTIFICATION,
                           onTap: () {
-                            widget.onTap(BottomNavigationEnum.CART, 2);
+                            widget.onTap(BottomNavigationEnum.NOTIFICATION, 0);
                           },
                           size: size),
-                      Positioned(
-                        bottom: 24,
-                        right: -3,
-                        child: CircleAvatar(
-                          radius: 8,
-                          backgroundColor: AppColors.mainRedColor,
-                          child: Obx(
-                            () => CustomText(
-                              text: cartService.cartCount.toString(),
-                              textColor: AppColors.mainWhiteColor,
-                              fontSize: 13,
+                      Visibility(
+                        visible: controller.notificationCounter.value != 0,
+                        child: Positioned(
+                          bottom: 24,
+                          right: -3,
+                          child: CircleAvatar(
+                            radius: 8,
+                            backgroundColor: AppColors.mainRedColor,
+                            child: Obx(
+                              () => CustomText(
+                                text: '6',
+                                textColor: AppColors.mainWhiteColor,
+                                fontSize: 13,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -131,33 +118,39 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     required Function() onTap,
     required Size size,
   }) {
-    return InkWell(
-      onTap: onTap,
-      // () {
-      //   onTap();
-      // },
-      child: Column(
-        // mainAxisSize: MainAxisSize.min,
-        children: [
-          SvgPicture.asset(
-            'assets/images/$imageName.svg',
-            color:
-                isSelected ? AppColors.mainBlueColor : AppColors.mainBlackColor,
-            // width: size.width * 0.09,
-            height: size.width * 0.08,
-          ),
-          SizedBox(
-            height: size.width * 0.02,
-          ),
-          Text(
-            text,
-            style: TextStyle(
-              color: isSelected
-                  ? AppColors.mainBlueColor
-                  : AppColors.mainTextColor,
+    return SizedBox(
+      width: size.width * 0.15,
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          children: [
+            SvgPicture.asset(
+              'assets/images/$imageName.svg',
+              color: AppColors.mainPurpleColore,
+              // width: size.width * 0.09,
+              height: size.width * 0.05,
             ),
-          )
-        ],
+            5.ph,
+            Visibility(
+              visible: isSelected,
+              child: Container(
+                  width: size.width * 0.15,
+                  height: 2,
+                  decoration: BoxDecoration(
+                      color: AppColors.mainPurpleColore,
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 3,
+                            offset: Offset(0, 3),
+                            blurStyle: BlurStyle.normal,
+                            color: AppColors.lightPurpleColore)
+                      ])),
+            ),
+            SizedBox(
+              height: size.width * 0.02,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_templete/ui/views/favorites_view.dart/favorites_view.dart';
+import 'package:flutter_templete/ui/views/home_view.dart/home_view.dart';
+import 'package:flutter_templete/ui/views/notification_view.dart/notification_view.dart';
+import 'package:flutter_templete/ui/views/profile_view/profile_view.dart';
 
 import '../../../core/enums/bottom_Navigation.dart';
 import '../../shared/colors.dart';
@@ -19,9 +23,8 @@ class _MainViewState extends State<MainView> {
   // MainViewController controller = Get.put(MainViewController());
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      // backgroundColor: AppColors.mainBlackColor,
+    return Scaffold(
+      backgroundColor: AppColors.mainWhiteColor,
       key: scaffoldKey,
       endDrawer: Container(
         color: AppColors.mainWhiteColor,
@@ -48,17 +51,17 @@ class _MainViewState extends State<MainView> {
           });
         },
       ),
-
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         onPageChanged: (pageNumer) {},
         children: const [
-          // ProductsView(),
-          // HomeView(),
-          // CartView(),
+          NotificationView(),
+          HomeView(),
+          FavoritesView(),
+          ProfileView()
         ],
       ),
-    ));
+    );
   }
 }
