@@ -1,11 +1,8 @@
-import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_templete/app/app_config.dart';
 import 'package:flutter_templete/ui/shared/custom_widgets/custom_toast.dart';
 import 'package:flutter_templete/ui/shared/utils.dart';
-import 'package:get/get.dart';
 
 import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as geo;
@@ -174,11 +171,7 @@ import 'package:geocoding/geocoding.dart' as geo;
 //   }
 // }
 
-import 'package:bot_toast/bot_toast.dart';
-import 'package:location/location.dart';
-import 'package:geocoding/geocoding.dart' as geo;
 
-import '../../app/app_config.dart';
 
 class LocationService {
   Location location = Location();
