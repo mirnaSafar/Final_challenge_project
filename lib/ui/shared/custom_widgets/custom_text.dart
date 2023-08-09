@@ -8,20 +8,26 @@ class CustomText extends StatelessWidget {
     this.fontSize,
     this.bold = false,
     required this.text,
+    this.underline,
+    this.textAlign,
   });
   final Color? textColor;
   final double? fontSize;
   final bool? bold;
   final String text;
+  final bool? underline;
+  final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {
     return Text(
-        textAlign: TextAlign.center,
+        textAlign: textAlign,
         text,
-        style: TextStyle( 
-          fontWeight: bold == true ? FontWeight.bold : FontWeight.normal,
-          fontSize: fontSize ?? 16,
-          color: textColor ?? AppColors.secondaryFontColor,
-        ));
+        style: TextStyle(
+            fontWeight: bold == true ? FontWeight.bold : FontWeight.normal,
+            fontSize: fontSize ?? 16,
+            color: textColor ?? AppColors.secondaryFontColor,
+            decoration: underline == true
+                ? TextDecoration.underline
+                : TextDecoration.none));
   }
 }

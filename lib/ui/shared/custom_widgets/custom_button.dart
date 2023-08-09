@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_templete/ui/shared/extensions.dart'; 
+import 'package:flutter_templete/ui/shared/extensions.dart';
 import 'package:sizer/sizer.dart';
 
 import '../colors.dart';
 
 class CustomButton extends StatelessWidget {
-  final String text;
+  final String? text;
   final Color? color;
   final Color? textColor;
   final Color? borderColor;
@@ -46,7 +46,7 @@ class CustomButton extends StatelessWidget {
                   size.width,
                   15.w,
                 ),
-                shape: const StadiumBorder(),
+                // shape:,
                 backgroundColor: color,
                 side: borderColor != null
                     ? BorderSide(
@@ -62,7 +62,7 @@ class CustomButton extends StatelessWidget {
                   10.w.px,
                 ],
                 Text(
-                  text,
+                  text!,
                   style: TextStyle(color: textColor, fontSize: 18),
                 ),
               ],
