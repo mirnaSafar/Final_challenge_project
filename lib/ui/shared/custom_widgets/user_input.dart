@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_templete/ui/shared/colors.dart';
 import 'package:flutter_templete/ui/shared/utils.dart';
 
 // ignore: must_be_immutable
@@ -13,7 +14,7 @@ class UserInput extends StatefulWidget {
       this.prefixIcon});
   bool? obscureText;
   final Icon? suffixIcon;
-  final Icon? prefixIcon;
+  final Widget? prefixIcon;
   final String text;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -49,11 +50,11 @@ class _UserInputState extends State<UserInput> {
               EdgeInsets.symmetric(horizontal: screenWidth(10), vertical: 4),
           hintText: widget.text,
           prefixIcon: widget.prefixIcon,
-          hintStyle: const TextStyle(
-            color: Color.fromRGBO(182, 183, 183, 1),
+          hintStyle: TextStyle(
+            color: AppColors.fieldTextPurpleColore,
           ),
           filled: true,
-          fillColor: const Color.fromRGBO(242, 242, 242, 1),
+          fillColor: AppColors.fieldPurpleColore,
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none),

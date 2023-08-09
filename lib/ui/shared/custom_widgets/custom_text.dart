@@ -16,12 +16,12 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.start,
         text,
-        style: TextStyle( 
+        style: TextStyle(
           fontWeight: bold == true ? FontWeight.bold : FontWeight.normal,
           fontSize: fontSize ?? 16,
-          color: textColor ?? AppColors.secondaryFontColor,
+          color: textColor ?? AppColors.mainPurpleColore,
         ));
   }
 }
