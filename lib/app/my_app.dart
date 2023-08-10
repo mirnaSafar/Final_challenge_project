@@ -37,6 +37,9 @@ class MyApp extends StatelessWidget {
             navigatorObservers: [BotToastNavigatorObserver()],
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              fontFamily: 'Alexandria',
+              // textTheme:
+              //     GoogleFonts.alexandriaTextTheme(Theme.of(context).textTheme),
               primarySwatch: Colors.blue,
             ),
             home: SignUpView()));

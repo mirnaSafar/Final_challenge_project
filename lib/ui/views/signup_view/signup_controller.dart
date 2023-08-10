@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_templete/core/services/base_controller.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:flutter_templete/ui/views/main_view/main_view.dart';
+import 'package:get/get.dart';
 
 class SignUpViewController extends BaseController {
   RxInt selectedValue = 1.obs;
-
-  // String get getDotsStatusText => currentIndex.value != 2 ? 'Next' : 'Finish';
-  TextEditingController searchController = TextEditingController();
-
-  void monitorDotsState() {
-    // currentIndex.value != 2 ? currentIndex += 1 : null;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  submitForm() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      // runFullLoadingFutureFunction(function: () {});
+      Get.to(MainView());
+    }
   }
 }

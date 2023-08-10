@@ -30,7 +30,7 @@ class _UserInputState extends State<UserInput> {
       padding: EdgeInsets.only(top: height * 0),
       child: TextFormField(
         obscureText: widget.obscureText!,
-        autovalidateMode: AutovalidateMode.always,
+        // autovalidateMode: AutovalidateMode.,
         validator: widget.validator,
         controller: widget.controller,
         decoration: InputDecoration(
