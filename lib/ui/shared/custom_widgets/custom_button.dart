@@ -16,7 +16,7 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.text,
-    this.color = const Color.fromRGBO(252, 96, 17, 1),
+    this.color = const Color.fromRGBO(111, 40, 119, 1),
     this.textColor,
     this.borderColor,
     this.onPressed,
