@@ -11,13 +11,15 @@ class UserInput extends StatefulWidget {
       this.validator,
       this.obscureText = false,
       this.suffixIcon,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.fillColor});
   bool? obscureText;
   final Icon? suffixIcon;
   final Widget? prefixIcon;
   final String text;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final Color? fillColor;
   @override
   State<UserInput> createState() => _UserInputState();
 }
@@ -54,7 +56,7 @@ class _UserInputState extends State<UserInput> {
             color: AppColors.fieldTextPurpleColore,
           ),
           filled: true,
-          fillColor: AppColors.fieldPurpleColore,
+          fillColor: widget.fillColor ?? AppColors.fieldPurpleColore,
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none),

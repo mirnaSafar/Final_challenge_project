@@ -6,6 +6,8 @@ class AppColors {
   static Color lightPurpleColore = const Color.fromRGBO(185, 137, 189, 1);
   static Color mainWhiteColor = const Color.fromRGBO(255, 255, 255, 1);
   static Color fieldPurpleColore = const Color.fromRGBO(185, 229, 251, 0.15);
+  static Color searchfieldColor = const Color.fromRGBO(70, 69, 71, 0.03);
+
   static Color fieldTextPurpleColore = const Color.fromRGBO(111, 40, 119, 0.25);
 
   static Color mainGreyColor = const Color.fromRGBO(70, 69, 71, 1);
