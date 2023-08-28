@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static Color mainPurpleColore = const Color.fromRGBO(111, 40, 119, 1);
+  static Color opacityPurpleColore = const Color.fromRGBO(111, 40, 119, 0.25);
   static Color seconderyPurpleColore = const Color.fromRGBO(146, 63, 152, 1);
   static Color lightPurpleColore = const Color.fromRGBO(185, 137, 189, 1);
   static Color mainWhiteColor = const Color.fromRGBO(255, 255, 255, 1);

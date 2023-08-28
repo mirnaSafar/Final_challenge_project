@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_templete/app/app_config.dart';
+import 'package:flutter_templete/core/data/models/apis/register_model.dart';
 import 'package:flutter_templete/core/data/models/apis/token_info.dart';
 import 'package:flutter_templete/core/data/models/cart_model.dart';
 import 'package:flutter_templete/core/enums/data_type.dart';
@@ -16,7 +17,30 @@ class SharedPrefrenceRepostory {
   String PREF_APP_LANG = 'app_lang';
   String PREF_CART_LIST = 'cart_list';
   String PREF_SUB_STATUS = 'sub_status';
+  String PREF_INFO = 'user_info';
+
   //list
+
+  saveUserInfo(RegisterModel info) {
+    setPreference(
+      dataType: DataType.STRING,
+      key: PREF_INFO,
+      value: jsonEncode(info.toJson()), //string
+      // json encode
+      // بتاخد اوبجيكت
+      // بترجع سترنغ
+    );
+  }
+
+  RegisterModel? getUserInfo() {
+    if (globalSharedPreference.containsKey(PREF_INFO)) {
+      return RegisterModel.fromJson(
+        jsonDecode(getPreferenc(key: PREF_INFO)),
+      );
+    } else {
+      return null; //key not found
+    }
+  }
 
   void setTokenInfo(TokenInfo value) {
     setPreference(

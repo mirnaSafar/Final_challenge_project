@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_templete/ui/shared/colors.dart';
-import 'package:flutter_templete/ui/shared/constants.dart';
 import 'package:flutter_templete/ui/shared/custom_widgets/custom_text.dart';
 import 'package:flutter_templete/ui/shared/custom_widgets/user_input.dart';
 import 'package:flutter_templete/ui/shared/extensions.dart';
@@ -30,6 +29,7 @@ class _SignUpViewState extends State<SignUpView> {
         padding: EdgeInsets.symmetric(horizontal: screenWidth(25)),
         child: Obx(() {
           print(controller.selectedValue);
+          print(controller.selectedMajor);
           return Form(
             key: controller.formKey,
             child: ListView(
@@ -98,9 +98,18 @@ class _SignUpViewState extends State<SignUpView> {
                   ),
                 ),
                 screenHeight(40).ph,
+                // GridView.builder(
+                //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                //     crossAxisCount: 2,
+                //   ),
+                //   itemCount: 2,
+                //   itemBuilder: (BuildContext context, int index) {
+                //     return ;
+                //   },
+                // ),
                 ListView.separated(
                   shrinkWrap: true,
-                  itemCount: majors.length,
+                  itemCount: controller.allColleges.length,
                   separatorBuilder: (BuildContext context, int index) {
                     return 40.px;
                   },
@@ -117,15 +126,22 @@ class _SignUpViewState extends State<SignUpView> {
                                       vertical: VisualDensity.minimumDensity),
                                   fillColor: MaterialStateColor.resolveWith(
                                       (states) => AppColors.mainPurpleColore),
-                                  value: index,
+                                  value: controller.allColleges[index].uuid!,
                                   groupValue: controller.selectedValue.value,
                                   onChanged: (value) {
                                     controller.selectedValue.value =
-                                        value as int;
+                                        controller.allColleges[index].uuid!;
+
+                                    controller.selectedMajor.value =
+                                        controller.allColleges[index].name ??
+                                            '';
                                   },
                                 ),
                               ),
-                              CustomText(fontSize: 12, text: majors[index]),
+                              CustomText(
+                                  fontSize: 12,
+                                  text:
+                                      controller.allColleges[index].name ?? ''),
                               10.px,
                               Transform.scale(
                                 scale: 0.8,
@@ -135,33 +151,46 @@ class _SignUpViewState extends State<SignUpView> {
                                       vertical: VisualDensity.minimumDensity),
                                   fillColor: MaterialStateColor.resolveWith(
                                       (states) => AppColors.mainPurpleColore),
-                                  value: index + 1,
+                                  value:
+                                      controller.allColleges[index + 1].uuid!,
                                   groupValue: controller.selectedValue.value,
                                   onChanged: (value) {
                                     controller.selectedValue.value =
-                                        value as int;
+                                        controller.allColleges[index + 1].uuid!;
+                                    // value as int;
+                                    controller.selectedMajor.value =
+                                        controller.allColleges[index + 1].name!;
                                   },
                                 ),
                               ),
-                              CustomText(fontSize: 12, text: majors[index + 1]),
+                              CustomText(
+                                  fontSize: 12,
+                                  text:
+                                      controller.allColleges[index + 1].name!),
                               10.px,
-                              Transform.scale(
-                                scale: 0.8,
-                                child: Radio(
-                                  visualDensity: VisualDensity(
-                                      horizontal: VisualDensity.minimumDensity,
-                                      vertical: VisualDensity.minimumDensity),
-                                  fillColor: MaterialStateColor.resolveWith(
-                                      (states) => AppColors.mainPurpleColore),
-                                  value: index + 2,
-                                  groupValue: controller.selectedValue.value,
-                                  onChanged: (value) {
-                                    controller.selectedValue.value =
-                                        value as int;
-                                  },
-                                ),
-                              ),
-                              CustomText(fontSize: 12, text: majors[index + 2]),
+                              // Transform.scale(
+                              //   scale: 0.8,
+                              //   child: Radio(
+                              //     visualDensity: VisualDensity(
+                              //         horizontal: VisualDensity.minimumDensity,
+                              //         vertical: VisualDensity.minimumDensity),
+                              //     fillColor: MaterialStateColor.resolveWith(
+                              //         (states) => AppColors.mainPurpleColore),
+                              //     value: index + 2,
+                              //     groupValue: controller.selectedValue.value,
+                              //     onChanged: (value) {
+                              //       controller.selectedValue.value =
+                              //           value as int;
+                              //       controller.selectedMajor.value =
+                              //           controller.allColleges[index + 2].name!;
+                              //     },
+                              //   ),
+                              // ),
+                              // CustomText(
+                              //     fontSize: 12,
+                              //     text:
+                              //         controller.allColleges[index + 2].name ??
+                              //             ''),
                             ],
                           )
                         : Container();
@@ -171,7 +200,10 @@ class _SignUpViewState extends State<SignUpView> {
                 CustomButton(
                   onPressed: () {
                     controller.formKey.currentState!.validate();
-                    controller.submitForm();
+                    controller.submitForm(
+                        collage_id: controller.selectedValue.value,
+                        name: controller.userNameController.text,
+                        phone: controller.phoneNumberController.text);
                   },
                   text: 'إنشاء حساب',
                   color: AppColors.mainPurpleColore,

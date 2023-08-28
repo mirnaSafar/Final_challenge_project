@@ -8,6 +8,9 @@ import 'package:flutter_templete/core/services/connectivity_service.dart';
 import 'package:flutter_templete/core/services/location_service.dart';
 import 'package:flutter_templete/core/services/notification_service.dart';
 import 'package:flutter_templete/firebase_options.dart';
+import 'package:flutter_templete/ui/views/home_view.dart/home_view_controller.dart';
+import 'package:flutter_templete/ui/views/main_view/main_view_controller.dart';
+import 'package:flutter_templete/ui/views/signup_view/signup_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +25,9 @@ Future<void> main() async {
   });
   Get.put(SharedPrefrenceRepostory());
   Get.put(CartService());
+  Get.put(MainViewController());
+  Get.put(HomeViewController());
+  Get.put(SignUpViewController());
   //ram
   Get.put(ConnectivityService());
   Get.put(MyAppController());

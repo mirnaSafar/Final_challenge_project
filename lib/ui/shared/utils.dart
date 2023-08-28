@@ -1,7 +1,10 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_templete/core/data/reposotories/shared_prefernces.dart'; 
+import 'package:flutter_templete/core/data/reposotories/shared_prefernces.dart';
+import 'package:flutter_templete/ui/views/home_view.dart/home_view_controller.dart';
+import 'package:flutter_templete/ui/views/main_view/main_view_controller.dart';
+import 'package:flutter_templete/ui/views/signup_view/signup_controller.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,7 +16,7 @@ import '../../core/services/cart_services.dart';
 import '../../core/services/connectivity_service.dart';
 import '../../core/services/notification_service.dart';
 import 'colors.dart';
-import 'custom_widgets/custom_toast.dart'; 
+import 'custom_widgets/custom_toast.dart';
 
 bool isEmail(String value) {
   RegExp regExp = RegExp(
@@ -22,13 +25,13 @@ bool isEmail(String value) {
 }
 
 bool isName(String name) {
-  RegExp nameExp = RegExp(r'^[a-zA-Z\s]{2,15}$');
+  RegExp nameExp = RegExp(r'^[a-zA-Z\s]{2,}$');
   return nameExp.hasMatch(name);
 }
 
 bool isValidNumber(String value) {
   RegExp regExp =
-      RegExp(r'^(?:\+971|00971|0)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$');
+      RegExp(r'^(?:\+971|00971|0)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{8}$');
   return regExp.hasMatch(value);
 }
 
@@ -54,10 +57,13 @@ double screenHeight(double percent) {
   return Get.size.height / percent;
 }
 
-SharedPrefrenceRepostory get storage =>
-    Get.find<SharedPrefrenceRepostory>();
+SharedPrefrenceRepostory get storage => Get.find<SharedPrefrenceRepostory>();
 
 CartService get cartService => Get.find<CartService>();
+MainViewController get mainViewController => Get.find<MainViewController>();
+HomeViewController get homeViewController => Get.find<HomeViewController>();
+SignUpViewController get signUpViewController =>
+    Get.find<SignUpViewController>();
 NotificationService get notificationService => Get.find<NotificationService>();
 ConnectivityService get connectivityService => Get.find<ConnectivityService>();
 

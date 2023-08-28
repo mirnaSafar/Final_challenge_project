@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_templete/ui/shared/colors.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 import '../../../core/enums/bottom_Navigation.dart';
@@ -7,12 +8,15 @@ import '../../shared/utils.dart';
 
 class MainViewController extends BaseController {
   Rx<BottomNavigationEnum> selected = BottomNavigationEnum.HOME.obs;
-  PageController pageController = PageController(initialPage: 2);
+  PageController pageController = PageController(initialPage: 1);
+
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  RxString pageHeaderIcon = 'assets/images/ic_home.svg'.obs;
 
   RxString pageTitle = "الرئيسية".obs;
   RxInt notificationCounter = 0.obs;
-  RxString pageHeaderIcon = 'assets/images/ic_back.svg'.obs;
+  Rx<Color> pageHeaderColor = AppColors.mainPurpleColore.obs;
 
   void setSelectedEnum(BottomNavigationEnum selectedEnum) {
     selected.value = selectedEnum;

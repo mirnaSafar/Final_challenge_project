@@ -4,7 +4,7 @@ import '../../../ui/shared/utils.dart';
 
 //ملف الاعدادادتى لكامل ال api
 class NetworkConfig {
-  static String BASE_API = 'api/web/';
+  static String BASE_API = 'api/';
   static String getFullApiRoute(String apiroute) {
     return BASE_API + apiroute;
   }
@@ -15,11 +15,12 @@ class NetworkConfig {
       Map<String, String>? extraHeaders}) {
     return {
       if (needAuth)
-        "Authorization": "Bearer ${storage.getTokenInfo()?.accessToken ?? ''}",
+        "Authorization":
+            "Bearer ${storage.getTokenInfo()?.accessToken ?? 'Bearer 2|BR11Tn2IY8Uvg5rzn54fJkHypIoFQhGLmRDKFjrc'}",
       if (type != RequestType.GET)
-        "Content-Type": type == RequestType.MULTIPART
-            ? "multipart/form-data"
-            : "application/json",
+        "Content-Type": 'application/x-www-form-urlencoded',
+      //  type == RequestType.MULTIPART
+      //      "multipart/form-data":
       ...extraHeaders ?? {}
     };
   }

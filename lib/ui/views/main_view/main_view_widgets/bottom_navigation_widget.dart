@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_templete/main.dart';
+import 'package:flutter_templete/ui/shared/custom_widgets/custom_underline.dart';
 import 'package:flutter_templete/ui/views/main_view/main_view_controller.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,6 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   Widget build(BuildContext context) {
     MainViewController controller = Get.put(MainViewController());
     final size = MediaQuery.of(context).size;
-    double cpWidth = 500;
     return Stack(
         // fit: StackFit.loose,
         alignment: Alignment.center,
@@ -133,18 +133,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
             5.ph,
             Visibility(
               visible: isSelected,
-              child: Container(
-                  width: size.width * 0.15,
-                  height: 2,
-                  decoration: BoxDecoration(
-                      color: AppColors.mainPurpleColore,
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 3,
-                            offset: Offset(0, 3),
-                            blurStyle: BlurStyle.normal,
-                            color: AppColors.lightPurpleColore)
-                      ])),
+              child: CustomUnderline(),
             ),
             SizedBox(
               height: size.width * 0.02,

@@ -7,12 +7,16 @@ import 'package:flutter_templete/ui/shared/utils.dart';
 import 'package:flutter_templete/ui/views/main_view/main_view_controller.dart';
 import 'package:get/get.dart';
 
-class PageHeader extends StatefulWidget {
+class PageHeader extends StatefulWidget implements PreferredSizeWidget {
   const PageHeader({super.key, this.text});
 
   final String? text;
   @override
   State<PageHeader> createState() => _PageHeaderState();
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => Size(screenWidth(1), screenHeight(1));
 }
 
 class _PageHeaderState extends State<PageHeader> {
@@ -25,6 +29,7 @@ class _PageHeaderState extends State<PageHeader> {
           SvgPicture.asset(
             'assets/images/shapeMaker.svg',
             width: screenWidth(1),
+            color: controller.pageHeaderColor.value,
           ),
           Positioned(
             bottom: 50,

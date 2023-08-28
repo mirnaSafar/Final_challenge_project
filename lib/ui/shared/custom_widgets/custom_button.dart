@@ -7,6 +7,8 @@ import '../utils.dart';
 class CustomButton extends StatelessWidget {
   final String text;
   final Color? color;
+  final double? width;
+  final double? height;
   final Color? textColor;
   final Color? borderColor;
   // final Function? onPressed;
@@ -22,6 +24,8 @@ class CustomButton extends StatelessWidget {
     this.onPressed,
     this.imageName,
     this.loader = false,
+    this.width,
+    this.height,
   });
 
   @override
@@ -37,11 +41,13 @@ class CustomButton extends StatelessWidget {
       );
     } else {
       return ElevatedButton(
-          onPressed: onPressed,
+          onPressed: () {
+            onPressed!();
+          },
           style: ElevatedButton.styleFrom(
               fixedSize: Size(
-                size.width,
-                screenHeight(18),
+                width ?? size.width,
+                height ?? screenHeight(18),
               ),
               // shape: const StadiumBorder(),
               backgroundColor: color,

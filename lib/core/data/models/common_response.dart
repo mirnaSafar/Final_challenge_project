@@ -12,9 +12,9 @@ class CommonResponse<T> {
     } else {
       if (json['response'] != null &&
           json['response'] is Map &&
-          json['response']['title'] != null) {
+          json['response']['error'] != null) {
         //title or num
-        this.message = json['response']['title']; //if no key for error
+        this.message = json['response']['error']; //if no key for error
       } else {
         //or status code
         switch (statusCode) {
