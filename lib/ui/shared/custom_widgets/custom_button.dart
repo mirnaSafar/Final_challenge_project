@@ -11,8 +11,10 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final Color? textColor;
   final Color? borderColor;
+  final double? fontSize;
   // final Function? onPressed;
   final void Function()? onPressed;
+
   final String? imageName;
   final bool? loader;
   const CustomButton({
@@ -26,6 +28,7 @@ class CustomButton extends StatelessWidget {
     this.loader = false,
     this.width,
     this.height,
+    this.fontSize,
   });
 
   @override
@@ -62,7 +65,7 @@ class CustomButton extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: TextStyle(color: textColor, fontSize: 14),
+                style: TextStyle(color: textColor, fontSize: fontSize ?? 14),
               ),
             ],
           ));

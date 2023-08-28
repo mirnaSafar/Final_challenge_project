@@ -8,9 +8,9 @@ import 'package:flutter_templete/ui/shared/custom_widgets/user_input.dart';
 import 'package:flutter_templete/ui/shared/utils.dart';
 import 'package:flutter_templete/ui/shared/validation_functions.dart';
 import 'package:flutter_templete/ui/views/home_view.dart/home_view.dart';
+import 'package:flutter_templete/ui/views/login_view/login_controller.dart';
+import 'package:flutter_templete/ui/views/signup_view/signup_view.dart';
 import 'package:get/get.dart';
-
-import 'login_controller.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -50,7 +50,7 @@ class _LoginViewState extends State<LoginView> {
             10.ph,
             UserInput(
               prefixIcon: Transform.scale(
-                  scale: 0.8,
+                  scale: 0.4,
                   child: SvgPicture.asset("assets/images/ic_user.svg")),
               text: "اسم المستخدم",
               controller: controller.userController,
@@ -65,7 +65,7 @@ class _LoginViewState extends State<LoginView> {
             10.ph,
             UserInput(
                 prefixIcon: Transform.scale(
-                  scale: 0.8,
+                  scale: 0.4,
                   child: SvgPicture.asset(
                     "assets/images/ic_user.svg",
                   ),
@@ -90,10 +90,13 @@ class _LoginViewState extends State<LoginView> {
                   text: "ليس لديك حساب؟",
                 ),
                 InkWell(
+                    onTap: () {
+                      context.push(SignUpView());
+                    },
                     child: CustomText(
-                  text: "انشأ حسابك الان",
-                  textColor: AppColors.mainPurpleColore,
-                ))
+                      text: "انشأ حسابك الان",
+                      textColor: AppColors.mainPurpleColore,
+                    ))
               ],
             ),
             50.ph,
@@ -101,7 +104,7 @@ class _LoginViewState extends State<LoginView> {
               child: CustomText(
                 text: "المتابعة كزائر",
                 textAlign: TextAlign.center,
-                // underline: true,
+                underline: true,
               ),
               onTap: () {},
             )

@@ -108,7 +108,16 @@ class _SubjectTestViewState extends State<SubjectTestView> {
                   10.ph,
                   Row(
                     children: [
-                      SvgPicture.asset('assets/images/check.svg'),
+                      InkWell(
+                          onTap: () {
+                            // homeViewController.selected != -1
+                            //     ? homeViewController
+                            //             .bookQuestions[0].correctAnswer ==
+                            //         homeViewController
+                            //             .bookQuestions[0].answers!.s1
+                            //     : null;
+                          },
+                          child: SvgPicture.asset('assets/images/check.svg')),
                       15.px,
                       SvgPicture.asset('assets/images/book_mark.svg'),
                       15.px,

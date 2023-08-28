@@ -12,11 +12,18 @@ class UserInput extends StatefulWidget {
       this.obscureText = false,
       this.suffixIcon,
       this.prefixIcon,
+      this.backgroundColor,
+      this.textColor,
+      this.maxLines,
       this.fillColor});
   bool? obscureText;
-  final Icon? suffixIcon;
+  final Widget? suffixIcon;
   final Widget? prefixIcon;
   final String text;
+  final Color? textColor;
+  final Color? backgroundColor;
+  final int? maxLines;
+
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Color? fillColor;
@@ -31,6 +38,7 @@ class _UserInputState extends State<UserInput> {
     return Padding(
       padding: EdgeInsets.only(top: height * 0),
       child: TextFormField(
+        maxLines: widget.maxLines ?? 1,
         obscureText: widget.obscureText!,
         // autovalidateMode: AutovalidateMode.,
         validator: widget.validator,
@@ -53,7 +61,7 @@ class _UserInputState extends State<UserInput> {
           hintText: widget.text,
           prefixIcon: widget.prefixIcon,
           hintStyle: TextStyle(
-            color: AppColors.fieldTextPurpleColore,
+            color: widget.textColor ?? AppColors.fieldTextPurpleColore,
           ),
           filled: true,
           fillColor: widget.fillColor ?? AppColors.fieldPurpleColore,
