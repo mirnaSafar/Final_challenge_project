@@ -6,6 +6,11 @@ import 'package:flutter_templete/ui/shared/custom_widgets/custom_button.dart';
 import 'package:flutter_templete/ui/shared/custom_widgets/custom_text.dart';
 import 'package:flutter_templete/ui/shared/custom_widgets/user_input.dart';
 import 'package:flutter_templete/ui/shared/utils.dart';
+import 'package:flutter_templete/ui/shared/validation_functions.dart';
+import 'package:flutter_templete/ui/views/home_view.dart/home_view.dart';
+import 'package:flutter_templete/ui/views/login_view/login_controller.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -15,6 +20,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  LoginController controller = LoginController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,8 +49,12 @@ class _LoginViewState extends State<LoginView> {
             ),
             10.ph,
             UserInput(
-              prefixIcon: SvgPicture.asset("assets/images/ic_user.svg"),
+              prefixIcon: Transform.scale(
+                  scale: 0.8,
+                  child: SvgPicture.asset("assets/images/ic_user.svg")),
               text: "اسم المستخدم",
+              controller: controller.userController,
+              validator: (value) => nameValidator(value!),
             ),
             30.ph,
             CustomText(
@@ -54,16 +64,23 @@ class _LoginViewState extends State<LoginView> {
             ),
             10.ph,
             UserInput(
-              prefixIcon: SvgPicture.asset(
-                "assets/images/ic_user.svg",
-              ),
-              text: "رمز الدخول",
-            ),
+                prefixIcon: Transform.scale(
+                  scale: 0.8,
+                  child: SvgPicture.asset(
+                    "assets/images/ic_user.svg",
+                  ),
+                ),
+                text: "رمز الدخول",
+                controller: controller.passController,
+                validator: (value) => passValidator(value!)),
             40.ph,
             CustomButton(
               text: "تسجيل الدخول",
               textColor: AppColors.mainWhiteColor,
               color: AppColors.mainPurpleColore,
+              onPressed: () {
+                Get.to(HomeView());
+              },
             ),
             10.ph,
             Row(
@@ -79,7 +96,7 @@ class _LoginViewState extends State<LoginView> {
                 ))
               ],
             ),
-            90.ph,
+            50.ph,
             InkWell(
               child: CustomText(
                 text: "المتابعة كزائر",

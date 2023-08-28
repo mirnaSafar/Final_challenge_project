@@ -17,4 +17,6 @@ class AppColors {
   static Color mainTextColor = const Color.fromRGBO(182, 183, 183, 1);
   static Color primaryFontColor = const Color.fromRGBO(74, 75, 77, 1);
   static Color secondaryFontColor = const Color.fromRGBO(124, 125, 126, 1);
+  static Color secondBlueColor = const Color.fromRGBO(185, 229, 251, 1);
+  static Color secondOgreyColor = const Color.fromRGBO(243, 243, 243, 1);
 }
