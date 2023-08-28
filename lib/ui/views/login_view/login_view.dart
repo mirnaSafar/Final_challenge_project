@@ -10,6 +10,8 @@ import 'package:flutter_templete/ui/shared/validation_functions.dart';
 import 'package:flutter_templete/ui/views/home_view.dart/home_view.dart';
 import 'package:get/get.dart';
 
+import 'login_controller.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
